@@ -1,0 +1,32 @@
+clear;
+clc;
+close all;
+
+syms x y;
+
+f = x^3 * exp(-(x)^2 - (y)^2);
+
+size = 100;
+fvalues =zeros(size,size);
+count_x = 0;
+
+xx = linspace(0 , 10, size);
+yy = linspace(0 , 10, size);
+for i = linspace(1,10,10)
+    count_x = count_x + 1;
+    count_y = 1;
+    for j = linspace(1,10,10)
+       fvalues(count_x,count_y) = f(i,j);
+       count_y = count_y + 1;
+    end
+end
+
+figure('Name','f plot','NumberTitle','off')
+surf(fvalues)
+max(max(fvalues));
+min(min(fvalues));
+
+figure('Name','Contours of f','NumberTitle','off')
+contour(xx, yy, fvalues)
+xlim([-4, 4])
+ylim([-4, 4])
